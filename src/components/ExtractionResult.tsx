@@ -1,4 +1,3 @@
-src/components/ExtractionResult.tsx
 import React from 'react';
 import type { ExtractedDocument } from '../types';
 import { ExtractionStatus } from '../types';

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MainLayout } from '../components/MainLayout';
 import { useAuth } from '../hooks/useAuth';
 import { useDocumentHistory } from '../hooks/useDocumentHistory';
+import { ExtractedDocument } from '../types';
 
 const UploadIcon: React.FC = () => (
   <svg
@@ -87,12 +88,14 @@ function formatDate(timestamp: string): string {
 export const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { documents } = useDocumentHistory();
+  const { history } = useDocumentHistory();
+
+  const documents = history;
 
   const totalUploads = documents.length;
   const lastUpload =
     documents.length > 0
-      ? documents.reduce((latest, doc) =>
+      ? documents.reduce((latest: ExtractedDocument, doc: ExtractedDocument) =>
           new Date(doc.timestamp) > new Date(latest.timestamp) ? doc : latest
         )
       : null;
@@ -171,7 +174,7 @@ export const DashboardPage: React.FC = () => {
               Recent Activity
             </h2>
             <ul className="divide-y divide-neutral-100">
-              {documents.slice(0, 5).map((doc) => (
+              {documents.slice(0, 5).map((doc: ExtractedDocument) => (
                 <li
                   key={doc.id}
                   className="py-3 flex items-center justify-between gap-4"

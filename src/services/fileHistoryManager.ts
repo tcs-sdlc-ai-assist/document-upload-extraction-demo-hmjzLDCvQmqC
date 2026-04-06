@@ -1,10 +1,10 @@
 import type { ExtractedDocument } from '../types';
-import { getAllDocuments, deleteAllDocuments } from './documentStorage';
+import { getDocuments, clearDocuments } from './documentStorage';
 
 export function getHistory(): ExtractedDocument[] {
-  return getAllDocuments();
+  return getDocuments();
 }
 
 export function clearHistory(): void {
-  deleteAllDocuments();
+  clearDocuments();
 }

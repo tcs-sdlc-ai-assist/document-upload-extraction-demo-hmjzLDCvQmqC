@@ -1,3 +1,11 @@
+Looking at the error:
+
+```
+src/pages/UploadPage.tsx(11,11): error TS2339: Property 'state' does not exist on type '{ uploadState: UploadState; uploadFile: (file: File) => Promise<void>; reset: () => void; }'.
+```
+
+The `useFileUpload` hook returns `uploadState` not `state`. I need to update the destructuring accordingly.
+
 import React from 'react';
 import { MainLayout } from '../components/MainLayout';
 import { UploadArea } from '../components/UploadArea';
@@ -8,9 +16,9 @@ import { useFileUpload } from '../hooks/useFileUpload';
 import { ExtractionStatus } from '../types';
 
 export const UploadPage: React.FC = () => {
-  const { state, uploadFile, reset } = useFileUpload();
+  const { uploadState, uploadFile, reset } = useFileUpload();
 
-  const { isUploading, isExtracting, progress, status, error, result } = state;
+  const { isUploading, isExtracting, progress, status, error, result } = uploadState;
 
   const isProcessing = isUploading || isExtracting;
 
@@ -52,7 +60,7 @@ export const UploadPage: React.FC = () => {
           )}
 
           {status === ExtractionStatus.COMPLETED && result && !isProcessing && (
-            <div className="animate-slide-up">
+            <div className="animate-fade-in">
               <StatusMessage
                 type="success"
                 message="Text extraction completed successfully."

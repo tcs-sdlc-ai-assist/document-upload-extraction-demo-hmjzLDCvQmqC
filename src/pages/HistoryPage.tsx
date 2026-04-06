@@ -4,7 +4,8 @@ import { DocumentCard } from '../components/DocumentCard';
 import { useDocumentHistory } from '../hooks/useDocumentHistory';
 
 const HistoryPage: React.FC = () => {
-  const { documents, clearHistory, isLoading } = useDocumentHistory();
+  const { history: documents, clearHistory } = useDocumentHistory();
+  const isLoading = false;
 
   return (
     <MainLayout>

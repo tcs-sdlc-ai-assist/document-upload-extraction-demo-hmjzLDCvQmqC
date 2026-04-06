@@ -7,6 +7,10 @@ export function getHistory(): ExtractedDocument[] {
   return documents ?? [];
 }
 
+export function getAllDocuments(): ExtractedDocument[] {
+  return getHistory();
+}
+
 export function store(doc: ExtractedDocument): void {
   try {
     const existing = getHistory();
@@ -44,4 +48,8 @@ export function clearHistory(): void {
   } catch (error) {
     console.error('[DocumentStorage] Failed to clear history:', error);
   }
+}
+
+export function deleteAllDocuments(): void {
+  clearHistory();
 }
