@@ -1,6 +1,3 @@
-src/services/documentExtractor.ts
-
-```typescript
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
 import { clean } from '../utils/textCleaner';
@@ -115,4 +112,3 @@ export async function extract(file: File): Promise<string> {
 
   return clean(rawText);
 }
-```
